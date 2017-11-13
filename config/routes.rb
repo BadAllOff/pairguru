@@ -14,5 +14,6 @@ Rails.application.routes.draw do
     collection do
       get :export
     end
+    resources :comments, module: :movies
   end
 end
