@@ -26,4 +26,7 @@ class User < ApplicationRecord
 
   validates :phone_number, format: { with: /\A[+]?\d+(?>[- .]\d+)*\z/, allow_nil: true }
 
+  def author_of?(object)
+    id == object.user_id
+  end
 end

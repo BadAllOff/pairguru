@@ -4,3 +4,6 @@
       = comment.user.name
   %p
     = comment.body
+  - if user_signed_in? && current_user.author_of?(comment)
+    %p
+      = link_to 'Delete', [commentable, comment], method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?'}

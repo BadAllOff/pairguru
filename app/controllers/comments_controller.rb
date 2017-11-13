@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_comment, only: [:update, :destroy]
 
   def create
     if comment_exists? then
@@ -12,6 +13,11 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment.destroy if current_user.author_of? @comment
+    redirect_to @commentable, notice: "Your comment was deleted."
+  end
+
   private
 
   def comment_params
@@ -20,5 +26,9 @@ class CommentsController < ApplicationController
 
   def comment_exists?
     @commentable.comments.exists?(user: current_user) ? true : false
+  end
+
+  def set_comment
+    @comment = Comment.find(params[:id])
   end
 end
