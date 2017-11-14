@@ -18,6 +18,13 @@ class CommentsController < ApplicationController
     redirect_to @commentable, notice: "Your comment was deleted."
   end
 
+
+  def top_commenters
+    @commenters = User.joins(:comments).where("comments.created_at > ?", Time.zone.now - 7.day).
+        select("users.*, COUNT(comments.id) as comments_count").
+        group("comments.user_id").order("comments_count DESC").limit(10)
+  end
+
   private
 
   def comment_params

@@ -1,0 +1,17 @@
+%h3
+  Top Commenters:
+  %table.table.table-hover
+    %thead
+      %tr
+        %th #
+        %th Name
+        %th Comments
+    %tbody
+      - @commenters.each_with_index do |commenter, index|
+        %tr
+          %td
+            = index+1
+          %td
+            = commenter.name
+          %td
+            = commenter.comments_count
