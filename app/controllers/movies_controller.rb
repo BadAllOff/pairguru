@@ -6,8 +6,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
-    @comments = @movie.comments
+    @movie = Movie.includes(comments:[:user]).find(params[:id])
   end
 
   def send_info

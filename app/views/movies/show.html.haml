@@ -8,4 +8,4 @@
 - else
   %p
     = link_to  'Sign in to leave a comment', new_user_session_path
-= render partial: 'comments/comments_list', locals: {commentable: @movie, comments: @comments}
+= render partial: 'comments/comments_list', locals: {commentable: @movie, comments: @movie.comments}

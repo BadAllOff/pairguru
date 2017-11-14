@@ -14,5 +14,5 @@
 
 class Movie < ApplicationRecord
   belongs_to :genre
-  has_many :comments , as: :commentable
+  has_many :comments , as: :commentable, :dependent => :destroy
 end
