@@ -23,7 +23,13 @@ class CommentsController < ApplicationController
     # It's not the best way to get top commenters
     # but if we cache this query, and execute it once in a day (at low-load time)
     # it can work quite ok.
-    @commenters = User.joins(:comments).where("comments.created_at > ?", Time.zone.now - 7.day).
+    # @commenters = User.joins(:comments).where("comments.created_at > ?", Time.zone.now - 7.day).
+    #     select("users.*, COUNT(comments.id) as comments_count").
+    #     group("comments.user_id").order("comments_count DESC").limit(10)
+    # I'll keep it here for a while, to discuss.
+
+    # This one should be better (will save some RAM), but I'm not sure. + Not so secure
+    @commenters = User.joins("INNER JOIN comments ON users.id = comments.user_id AND comments.created_at > '#{(Time.zone.now - 7.days).to_s(:db)}'").
         select("users.*, COUNT(comments.id) as comments_count").
         group("comments.user_id").order("comments_count DESC").limit(10)
   end
