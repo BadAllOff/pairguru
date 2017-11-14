@@ -17,5 +17,5 @@ Rails.application.routes.draw do
     resources :comments, module: :movies
   end
 
-  get 'comments/top_commenters' => "comments#top_commenters", as: :top_commenters
+  get "comments/top_commenters" => "comments#top_commenters", as: :top_commenters
 end
