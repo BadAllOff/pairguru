@@ -28,6 +28,15 @@ describe "Movies requests", type: :request do
         expect(page).to have_selector("h3", text: "Comments")
       end
 
+      it "comment can't be blank" do
+        visit "/movies/1"
+        click_on "Create Comment"
+
+        expect(current_path).to eq "/movies/1"
+        expect(page).to have_content "Comment body can't be blank"
+        expect(page).to_not have_content "Your comment was successfully posted."
+      end
+
       it "user can comment each movie only once" do
         visit "/movies/1"
         fill_in "comment_body", with: "This comment is ok"

@@ -8,8 +8,11 @@ class CommentsController < ApplicationController
     else
       @comment = @commentable.comments.new comment_params
       @comment.user = current_user
-      @comment.save
-      redirect_to @commentable, notice: "Your comment was successfully posted."
+      if @comment.save
+        redirect_to @commentable, notice: "Your comment was successfully posted."
+      else
+        redirect_to @commentable, alert: "Comment body can't be blank"
+      end
     end
   end
 
@@ -40,7 +43,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_exists?
-    @commentable.comments.exists?(user: current_user) ? true : false
+    @commentable.comments.exists?(user: current_user)
   end
 
   def set_comment
