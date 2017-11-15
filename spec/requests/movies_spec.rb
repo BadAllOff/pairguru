@@ -33,7 +33,7 @@ describe "Movies requests", type: :request do
         click_on "Create Comment"
 
         expect(current_path).to eq "/movies/1"
-        expect(page).to have_content "Comment body can't be blank"
+        expect(page).to have_content "Body can't be blank"
         expect(page).to_not have_content "Your comment was successfully posted."
       end
 
@@ -45,7 +45,7 @@ describe "Movies requests", type: :request do
         click_on "Create Comment"
 
         expect(current_path).to eq "/movies/1"
-        expect(page).to have_content "Delete your old comment first."
+        expect(page).to have_content "User can't comment the same movie more than once"
         expect(page).to have_content "This comment is ok"
         expect(page).to_not have_content "This comment should not be here"
       end

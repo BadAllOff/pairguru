@@ -3,16 +3,12 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:update, :destroy]
 
   def create
-    if comment_exists?
-      redirect_to @commentable, alert: "Delete your old comment first."
+    @comment = @commentable.comments.new comment_params
+    @comment.user = current_user
+    if @comment.save
+      redirect_to @commentable, notice: "Your comment was successfully posted."
     else
-      @comment = @commentable.comments.new comment_params
-      @comment.user = current_user
-      if @comment.save
-        redirect_to @commentable, notice: "Your comment was successfully posted."
-      else
-        redirect_to @commentable, alert: "Comment body can't be blank"
-      end
+      redirect_to @commentable, flash: { alert: @comment.errors.full_messages.to_sentence }
     end
   end
 
