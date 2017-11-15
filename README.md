@@ -1,4 +1,10 @@
 ## Welcome to Pairguru App!
+
+[![forthebadge](http://forthebadge.com/images/badges/made-with-ruby.svg)](http://forthebadge.com)
+[![Maintainability](https://api.codeclimate.com/v1/badges/66c6fe672b961904a0ee/maintainability)](https://codeclimate.com/github/BadAllOff/pairguru/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/66c6fe672b961904a0ee/test_coverage)](https://codeclimate.com/github/BadAllOff/pairguru/test_coverage)
+![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg) ![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)
+
 Place where we examine our candidates
 
 ## :hammer: Setup
