@@ -11,11 +11,11 @@ describe "Movies requests", type: :request do
   describe "Authenticated user" do
     context "creates new comment" do
       before do
-        movie = FactoryGirl.create(:movie)
+        FactoryGirl.create(:movie)
         user = FactoryGirl.create(:user)
-
         user.confirmed_at = Time.zone.now
         user.save
+
         login_as(user, scope: :user)
       end
       it "has comment form" do

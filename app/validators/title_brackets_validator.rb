@@ -1,17 +1,16 @@
 class TitleBracketsValidator < ActiveModel::Validator
   def validate(record)
     unless balanced?(record.title)
-      record.errors[:title] << 'Title is not valid'
+      record.errors[:title] << "Title is not valid"
     end
   end
 
   private
 
   def balanced?(title)
-
-    stack = []              # Array to store opening brackets queue
-    previous_char = ''
-    brackets = {'{' => '}', '[' => ']', '(' => ')'}
+    stack = [] # Array to store opening brackets queue
+    previous_char = ""
+    brackets = { "{" => "}", "[" => "]", "(" => ")" }
 
     # Adds opening bracket at the end of the stack array.
     # If char is a closing bracket, pops last opening bracket and checks if it matches.
@@ -29,7 +28,6 @@ class TitleBracketsValidator < ActiveModel::Validator
     stack.empty?
   end
 end
-
 
 # this one fails only one test, but ... it looks really cool! :D
 # non_delimiters = /[^(){}\[\]]*/

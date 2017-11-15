@@ -1,12 +1,25 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id               :integer          not null, primary key
+#  commentable_type :string
+#  commentable_id   :integer
+#  user_id          :integer
+#  body             :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
 require "rails_helper"
 
 RSpec.describe Comment, type: :model do
-  describe 'Associations' do
+  describe "Associations" do
     it { should belong_to :user }
     it { should belong_to :commentable }
   end
 
-  describe 'Validations' do
+  describe "Validations" do
     it { should validate_presence_of :body }
     it { should validate_presence_of(:user_id) }
     it { should validate_presence_of(:commentable_type) }
