@@ -12,7 +12,7 @@ class TitleBracketsValidator < ActiveModel::Validator
     previous_char = ""
     brackets = { "{" => "}", "[" => "]", "(" => ")" }
 
-    # Adds opening bracket at the end of the stack array.
+    # Adds opening bracket at the end of the stack array.<
     # If char is a closing bracket, pops last opening bracket and checks if it matches.
     # If brackets match, checks if they aren't empty.
     title.each_char do |char|

@@ -1,5 +1,7 @@
 class Movies::CommentsController < CommentsController
   before_action :set_commentable
+  # how to put this before filter into the main comments controller?
+  before_action :set_comment, only: :destroy
 
   private
 
